@@ -14,9 +14,9 @@ class TestDojoFinal(unittest.TestCase):
             self.assertEqual(int_to_rule(idx, 2 ** DEFAULT_LEN), arr)
 
     def test_indexes_centered(self):
-        self.assertEqual(list(indexes_centered(2, 3)), [1, 2, 0])
-        self.assertEqual(list(indexes_centered(3, 3)), [2, 0, 1])
-        self.assertEqual(list(indexes_centered(0, 3)), [-1, 0, 1])
+        self.assertEqual(list(indexes_centered(2, 3, 3)), [1, 2, 0])
+        self.assertEqual(list(indexes_centered(3, 3, 3)), [2, 0, 1])
+        self.assertEqual(list(indexes_centered(0, 3, 3)), [-1, 0, 1])
 
     def test_bin_to_index(self):
         bin_index = (
@@ -40,6 +40,12 @@ class TestDojoFinal(unittest.TestCase):
     def test_simple_transformation(self):
         ll = [0, 0, 0, 0]
         self.assertEqual(Line().next(ll), ll)
+
+    def test_very_long_string(self):
+        ll = [0] * 100
+        self.assertEqual(Line().next(ll), ll)
+        ll[50] = 1
+        self.assertEqual(Line().next(ll)[51], 1)
 
     def test_next_cell_idx(self):
         ll = [1, 0, 0]

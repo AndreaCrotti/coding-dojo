@@ -12,7 +12,7 @@ def bin_to_index(bin_list):
     return int(bin_string_list, 2)
 
 
-def indexes_centered(center, num):
+def indexes_centered(center, num, tot_len):
     """Yield num indexes around the center, wrapping around when going
     after the bound
     """
@@ -22,7 +22,7 @@ def indexes_centered(center, num):
         if i <= 0:
             yield i
         else:
-            yield i % num
+            yield i % tot_len
 
 
 class Line(object):
@@ -35,7 +35,8 @@ class Line(object):
         return self.rule[bin_to_index(sub_list)]
 
     def _next(self, current, idx):
-        to_transform = [current[x] for x in indexes_centered(idx, self.rule_bits)]
+        to_transform = [current[x] for x in
+                        indexes_centered(idx, self.rule_bits, len(current))]
         return self.next_cell(to_transform)
 
     def next(self, current):
