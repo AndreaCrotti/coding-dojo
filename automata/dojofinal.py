@@ -27,13 +27,12 @@ def indexes_centered(center, num):
 
 class Line(object):
     def __init__(self, rule=DEFAULT_RULE, rule_len=DEFAULT_LEN):
-        self.rule = rule
         self.rule_bits = rule_len
         self.rule_len = 2 ** rule_len
+        self.rule = int_to_rule(rule, self.rule_len)
 
     def next_cell(self, sub_list):
-        rule = int_to_rule(self.rule, self.rule_len)
-        return rule[bin_to_index(sub_list)]
+        return self.rule[bin_to_index(sub_list)]
 
     def next(self, current):
         def _transform(cell_idx):
