@@ -13,6 +13,10 @@ class TestDojoFinal(unittest.TestCase):
         for idx, arr in rule_to_int.items():
             self.assertEqual(int_to_rule(idx), arr)
 
+    def test_indexes_centered(self):
+        self.assertEqual(list(indexes_centered(2, 3)), [1, 2, 0])
+        self.assertEqual(list(indexes_centered(3, 3)), [2, 0, 1])
+
     def test_bin_to_index(self):
         bin_index = (
             [(0, 1, 1), 3],

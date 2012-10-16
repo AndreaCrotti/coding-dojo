@@ -13,6 +13,16 @@ def bin_to_index(bin_list):
     return int(bin_string_list, 2)
 
 
+def indexes_centered(center, num):
+    """Yield num indexes around the center, wrapping around when going
+    after the bound
+    """
+    assert num % 2 == 1, "need an odd number to center"
+    mid = num / 2
+    for i in range(center-mid, center+mid+1):
+        yield i % num
+
+
 class Line(object):
     def __init__(self, rule=DEFAULT_RULE):
         self.rule = rule
@@ -26,10 +36,7 @@ class Line(object):
         def _next(idx): return (idx+1) % 2
 
         def _transform(cell_idx):
-            to_transform = [current[_prev(cell_idx)],
-                            current[cell_idx],
-                            current[_next(cell_idx)]]
-
+            to_transform = [current[x] for x in indexes_centered(cell_idx, 3)]
             return self.next_cell(to_transform)
 
         return map(_transform, current)
