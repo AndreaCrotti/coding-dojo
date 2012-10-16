@@ -13,24 +13,26 @@ def bin_to_index(bin_list):
     return int(bin_string_list, 2)
 
 
-def next_cell(current, rule=DEFAULT_RULE):
-    rule = int_to_rule(rule)
-    return rule[bin_to_index(current)]
+class Line(object):
+    def __init__(self, rule=DEFAULT_RULE):
+        self.rule = rule
 
+    def next_cell(self, sub_list):
+        rule = int_to_rule(self.rule)
+        return rule[bin_to_index(sub_list)]
 
-def next_line(current, rule=DEFAULT_RULE):
-    def _prev(idx): return idx - 1
+    def next_line(self, current):
+        def _prev(idx): return idx - 1
+        def _next(idx): return (idx+1) % 2
 
-    def _next(idx): return (idx+1) % 2
+        def _transform(cell_idx):
+            to_transform = [current[_prev(cell_idx)],
+                            current[cell_idx],
+                            current[_next(cell_idx)]]
 
-    def _transform(cell_idx):
-        to_transform = [current[_prev(cell_idx)],
-                        current[cell_idx],
-                        current[_next(cell_idx)]]
+            return self.next_cell(to_transform)
 
-        return next_cell(to_transform, rule)
-
-    return map(_transform, current)
+        return map(_transform, current)
 
 
 # Local Variables:

@@ -29,7 +29,8 @@ class TestDojoFinal(unittest.TestCase):
         }
 
         for inp, out in triple_to_val.items():
-            self.assertEqual(next_cell(inp, rule=24), out)
+            self.assertEqual(Line().next_cell(inp), out)
+
 
     def test_full_transformation(self):
         transf = (
@@ -37,7 +38,7 @@ class TestDojoFinal(unittest.TestCase):
         )
 
         for inp, out in transf:
-            self.assertEqual(next_line(inp), out)
+            self.assertEqual(Line().next_line(inp), out)
 
 
 if __name__ == '__main__':
