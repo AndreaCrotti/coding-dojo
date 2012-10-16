@@ -25,6 +25,7 @@ def indexes_centered(center, num):
 class Line(object):
     def __init__(self, rule=DEFAULT_RULE, rule_len=DEFAULT_LEN):
         self.rule = rule
+        self.rule_bits = rule_len
         self.rule_len = 2 ** rule_len
 
     def next_cell(self, sub_list):
@@ -36,7 +37,7 @@ class Line(object):
         def _next(idx): return (idx+1) % 2
 
         def _transform(cell_idx):
-            to_transform = [current[x] for x in indexes_centered(cell_idx, 3)]
+            to_transform = [current[x] for x in indexes_centered(cell_idx, self.rule_bits)]
             return self.next_cell(to_transform)
 
         return map(_transform, current)
