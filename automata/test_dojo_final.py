@@ -16,6 +16,7 @@ class TestDojoFinal(unittest.TestCase):
     def test_indexes_centered(self):
         self.assertEqual(list(indexes_centered(2, 3)), [1, 2, 0])
         self.assertEqual(list(indexes_centered(3, 3)), [2, 0, 1])
+        self.assertEqual(list(indexes_centered(0, 3)), [-1, 0, 1])
 
     def test_bin_to_index(self):
         bin_index = (

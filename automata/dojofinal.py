@@ -38,7 +38,6 @@ class Line(object):
     def next(self, current):
         def _transform(cell_idx):
             to_transform = [current[x] for x in indexes_centered(cell_idx, self.rule_bits)]
-            print("%s -> %s -> %s" % (str(current), str(cell_idx), str(to_transform)))
             return self.next_cell(to_transform)
 
         return [_transform(idx) for idx in range(len(current))]
