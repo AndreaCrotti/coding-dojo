@@ -4,7 +4,7 @@ DEFAULT_LEN = 3
 
 def int_to_rule(idx, rule_len):
     bin_st = bin(idx)[2:]
-    return list(map(int, bin_st.zfill(rule_len)))
+    return [int(x) for x in bin_st.zfill(rule_len)]
 
 
 def bin_to_index(bin_list):
