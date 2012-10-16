@@ -34,12 +34,12 @@ class Line(object):
     def next_cell(self, sub_list):
         return self.rule[bin_to_index(sub_list)]
 
-    def next(self, current):
-        def _transform(cell_idx):
-            to_transform = [current[x] for x in indexes_centered(cell_idx, self.rule_bits)]
-            return self.next_cell(to_transform)
+    def _next(self, current, idx):
+        to_transform = [current[x] for x in indexes_centered(idx, self.rule_bits)]
+        return self.next_cell(to_transform)
 
-        return [_transform(idx) for idx in range(len(current))]
+    def next(self, current):
+        return [self._next(current, idx) for idx in range(len(current))]
 
 
 # Local Variables:
