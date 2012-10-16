@@ -34,7 +34,7 @@ class Line(object):
 
     def next_line(self, current):
         def _prev(idx): return idx - 1
-        def _next(idx): return (idx+1) % 2
+        def _next(idx): return (idx+1) % len(current)
 
         def _transform(cell_idx):
             to_transform = [current[x] for x in indexes_centered(cell_idx, self.rule_bits)]
