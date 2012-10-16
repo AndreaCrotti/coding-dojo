@@ -30,6 +30,8 @@ class TestDojoFinal(unittest.TestCase):
         triple_to_val = {
             (0, 0, 0): 0,
             (1, 0, 1): 0,
+            (0, 1, 1): 1,
+            (1, 0, 0): 1,
         }
 
         for inp, out in triple_to_val.items():
