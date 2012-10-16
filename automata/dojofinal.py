@@ -4,7 +4,7 @@ DEFAULT_LEN = 3
 
 def int_to_rule(idx, rule_len):
     bin_st = bin(idx)[2:]
-    return map(int, bin_st.zfill(rule_len))
+    return list(map(int, bin_st.zfill(rule_len)))
 
 
 def bin_to_index(bin_list):
@@ -17,7 +17,7 @@ def indexes_centered(center, num, tot_len):
     after the bound
     """
     assert num % 2 == 1, "need an odd number to center"
-    mid = num / 2
+    mid = num // 2
     for i in range(center-mid, center+mid+1):
         if i <= 0:
             yield i
