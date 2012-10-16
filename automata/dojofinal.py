@@ -32,7 +32,7 @@ class Line(object):
         rule = int_to_rule(self.rule, self.rule_len)
         return rule[bin_to_index(sub_list)]
 
-    def next_line(self, current):
+    def next(self, current):
         def _prev(idx): return idx - 1
         def _next(idx): return (idx+1) % len(current)
 
@@ -40,7 +40,7 @@ class Line(object):
             to_transform = [current[x] for x in indexes_centered(cell_idx, self.rule_bits)]
             return self.next_cell(to_transform)
 
-        return map(_transform, current)
+        return [_transform(idx) for idx in range(len(current))]
 
 
 # Local Variables:

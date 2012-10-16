@@ -34,14 +34,20 @@ class TestDojoFinal(unittest.TestCase):
         for inp, out in triple_to_val.items():
             self.assertEqual(Line().next_cell(inp), out)
 
-    def test_full_transformation(self):
-        transf = (
-            ([0, 0, 0, 0], [0, 0, 0, 0]),
-        )
+    def test_long_sequence_gives_correct_middle_value(self):
+        l = [0] * 5
+        l[2] = 1; l[0] = 1
+        self.assertEqual(Line().next(l)[2], 0)
 
-        for inp, out in transf:
-            self.assertEqual(Line().next_line(inp), out)
+    def test_simple_transformation(self):
+        ll = [0, 0, 0, 0]
+        self.assertEqual(Line().next(ll), ll)
 
+    def test_very_long_string(self):
+        ll = [0] * 100
+        self.assertEqual(Line().next(ll), ll)
+        ll[50] = 1
+        self.assertEqual(Line().next(ll)[51], 1)
 
 if __name__ == '__main__':
     unittest.main()
