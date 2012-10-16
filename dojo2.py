@@ -1,7 +1,9 @@
+__metaclass__ = type
+
 from random import choice
 
 RULE_24 = [0, 0, 0, 1, 1, 0, 0, 0]
-# RULE_STUPID = [0] * 8
+
 
 def tuple_to_int(bt):
     res = 0
@@ -58,9 +60,8 @@ def is_converging(lis, limit=1000):
 
         idx += 1
         old = after
-        
+
     return False
-        
 
 
 def gen_random_sequence(length):
