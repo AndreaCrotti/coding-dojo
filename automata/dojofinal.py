@@ -1,11 +1,10 @@
 DEFAULT_RULE = 24
 DEFAULT_LEN = 3
-RULE_LEN = 2 ** 3
 
 
-def int_to_rule(idx):
+def int_to_rule(idx, rule_len):
     bin_st = bin(idx)[2:]
-    return map(int, bin_st.zfill(RULE_LEN))
+    return map(int, bin_st.zfill(rule_len))
 
 
 def bin_to_index(bin_list):
@@ -24,11 +23,12 @@ def indexes_centered(center, num):
 
 
 class Line(object):
-    def __init__(self, rule=DEFAULT_RULE):
+    def __init__(self, rule=DEFAULT_RULE, rule_len=DEFAULT_LEN):
         self.rule = rule
+        self.rule_len = 2 ** rule_len
 
     def next_cell(self, sub_list):
-        rule = int_to_rule(self.rule)
+        rule = int_to_rule(self.rule, self.rule_len)
         return rule[bin_to_index(sub_list)]
 
     def next_line(self, current):
